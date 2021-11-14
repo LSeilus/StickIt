@@ -2,22 +2,28 @@ package Infrastructure;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.time.LocalDateTime;
-import java.util.LinkedList;
+import java.util.Iterator;
+import java.util.ArrayList;
 
 public class NoteManager {
 	
 	private String noteFilePath;
-	private LinkedList<Note> notesList;
+	private ArrayList<Note> notesList;
 	
-	public LinkedList<Note> loadNotes() {
+	public ArrayList<Note> loadNotes() {
 		BufferedReader bReader = null;
 		String line = "";
-		LinkedList<Note> notesList = new LinkedList<Note>();
+		ArrayList<Note> notesList = new ArrayList<Note>();
 		try {
+			File noteFile = new File(noteFilePath);
+			if (!noteFile.exists()) {
+				noteFile.createNewFile();
+			}
 			bReader = new BufferedReader(new FileReader(noteFilePath));
 			while ((line = bReader.readLine()) != null) {
 				String[] noteRawData = line.split(",");
@@ -34,9 +40,9 @@ public class NoteManager {
 
 	}
 	
-	public void addNote(LinkedList<Note> list, String text, String category) {
+	public void addNote(String text, String category) {
 		Note note = new Note(text, category, LocalDateTime.now());
-		list.add(note);
+		notesList.add(note);
 		rewriteNoteFile();
 	}
 	
@@ -56,25 +62,40 @@ public class NoteManager {
 	}
 	
 	private void rewriteNoteFile() {
+		String tempFilePath = System.getProperty("user.dir") + "/notes2.csv";
 		try {
-			BufferedWriter bWriter = new BufferedWriter(new FileWriter(System.getProperty("user.dir") + "\notes2.csv"));
+			BufferedWriter bWriter = new BufferedWriter(new FileWriter(tempFilePath));
+			Iterator<Note> notesIterator = notesList.iterator();
+				String line = "";
+				Note noteWrite = null;
+				while (notesIterator.hasNext()) {
+					noteWrite = notesIterator.next();
+					line = noteWrite.getNoteText() + "," + noteWrite.getNoteCategory() + "," + noteWrite.getInitDate().toString();
+					bWriter.write(line);
+					bWriter.newLine();
+				}
+			bWriter.close();
+			
 		} 
 		catch (IOException e) {
 			e.printStackTrace();
 		}
-		Iterator<Note> noteIterator = notesList.Iterator();
+		File original = new File(noteFilePath);
+		original.delete();
+		File rewritten = new File(tempFilePath);
+		rewritten.renameTo(original);
 	}
 
-	public LinkedList<Note> getNotesList() {
+	public ArrayList<Note> getNotesList() {
 		return notesList;
 	}
 
-	public void setNotesList(LinkedList<Note> notesList) {
+	public void setNotesList(ArrayList<Note> notesList) {
 		this.notesList = notesList;
 	}
 
 	public NoteManager() {
-		this.noteFilePath = System.getProperty("user.dir") + "\notes.csv";
+		this.noteFilePath = System.getProperty("user.dir") + "/notes.csv";
 		this.setNotesList(loadNotes());
 	}
 }
