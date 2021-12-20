@@ -2,12 +2,13 @@ package gui;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
+import java.awt.Font;
 import javax.swing.JLabel;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.JPopupMenu;
 import Infrastructure.Note;
+import Infrastructure.NoteManager;
 
 
 public class NotePanel extends JPanel{
@@ -19,9 +20,10 @@ public class NotePanel extends JPanel{
 	
 	int noteId;
 	JPopupMenu notePopup;
+	NoteManager manager;
 
-
-	public NotePanel(int noteId, Note note) {
+	public NotePanel(int noteId, Note note, int fontSize, Color fontColor, Color bgColor, NoteManager manager) {
+		this.manager = manager;
 		this.noteId = noteId;
 		String noteContent = note.getNoteText();
 		int rows = 1 + (noteContent.length() / 70);
@@ -30,9 +32,9 @@ public class NotePanel extends JPanel{
 		if (rows == 1) {
 			singleLine = noteContent;
 			JLabel noteText = new JLabel(singleLine);
-			//System.out.println(singleLine);
-			noteText.setForeground(Color.WHITE);
-			noteText.setBackground(Color.BLACK);
+			noteText.setForeground(fontColor);
+			noteText.setBackground(bgColor);
+			noteText.setFont(new Font("Dialog", Font.PLAIN, fontSize));
 			this.add(noteText);
 		}
 		else if (rows > 1) {
@@ -53,8 +55,10 @@ public class NotePanel extends JPanel{
 				}
 				
 				JLabel noteText = new JLabel(singleLine);
-				noteText.setForeground(Color.WHITE);
-				noteText.setBackground(Color.BLACK);
+				noteText.setForeground(fontColor);
+				noteText.setBackground(bgColor);
+				noteText.setFont(new Font("Dialog", Font.PLAIN, fontSize));
+
 				this.add(noteText);
 
 			}
@@ -62,7 +66,7 @@ public class NotePanel extends JPanel{
 		}
 		
 		
-		this.setBackground(Color.BLACK);
+		this.setBackground(bgColor);
 		this.setVisible(true);
 		
 		notePopup = addNotePopup();
@@ -95,10 +99,12 @@ public class NotePanel extends JPanel{
 	}
 
 	private void deleteChosen() {
-		//TODO
+		@SuppressWarnings("unused")
+		DeleteConfirm deleteConfirm = new DeleteConfirm(manager, noteId);
 	}
 	
 	private void editChosen() {
-		//TODO
+		@SuppressWarnings("unused")
+		NoteInputWindow editNote = new NoteInputWindow(manager, noteId);
 	}
 }

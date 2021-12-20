@@ -1,18 +1,17 @@
 package gui;
 
-import java.awt.Dimension;
 import java.awt.GridBagConstraints;
+import java.awt.Color;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.util.ArrayList;
 import javax.swing.JPanel;
 import Infrastructure.Note;
+import Infrastructure.NoteManager;
 
 public class NotePainter {
-	public static void paintNotes(ArrayList<Note> notes, JPanel canvas) {
-		
-		//int singleNoteHeight = (int) Math.floor(1.0 * (canvas.getHeight() - 20) / notes.size());
-		//Layout ensures that new notes are placed accordingly and do not overlap
+	public static void paintNotes(NoteManager manager, JPanel canvas, int fontSize, Color fontColor, Color bgColor) {
+
 		canvas.setLayout(new GridBagLayout());
 		GridBagConstraints cons = new GridBagConstraints();
 		
@@ -24,16 +23,12 @@ public class NotePainter {
 		cons.gridx = 0;
 		int positionY = 0;
 		int rows = 1;
-		for (int i = 0; i < notes.size(); i++) {
-			
-			
-			
-			Note currentNote = notes.get(i);
-			NotePanel singleNote = new NotePanel(i, currentNote);
+		for (int i = 0; i < manager.getNotesList().size(); i++) {
+				
+			Note currentNote = manager.getNotesList().get(i);
+			NotePanel singleNote = new NotePanel(i, currentNote, fontSize, fontColor, bgColor, manager);
 			rows = 1 + (currentNote.getNoteText().length() / 70); 
-			//singleNote.setMaximumSize(new Dimension(canvas.getWidth() - 10, singleNoteHeight));
-			//singleNote.setMinimumSize(new Dimension(canvas.getWidth() - 10, singleNoteHeight));
-			
+
 			cons.gridheight = rows;
 			cons.gridy = positionY;
 			positionY += rows;

@@ -33,7 +33,8 @@ public class Tray {
 			addNoteMenu.addActionListener(new ActionListener() {
 				@Override
 				public void actionPerformed(ActionEvent e) {
-					AddNoteWindow addNoteW = new AddNoteWindow(manager.getCategories().toArray(new String[0]), manager, noteWindow); 
+					@SuppressWarnings("unused")
+					NoteInputWindow addNoteW = new NoteInputWindow(manager, noteWindow); 
 				}
 				
 			});
@@ -42,7 +43,8 @@ public class Tray {
 			openSettingsMenu.addActionListener(new ActionListener() {
 				@Override
 				public void actionPerformed(ActionEvent e) {
-				 //TODO 	
+					@SuppressWarnings("unused")
+					SettingsWindow settingsW = new SettingsWindow(noteWindow);
 				}
 			});
 			

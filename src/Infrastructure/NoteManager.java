@@ -8,12 +8,16 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.Iterator;
+
+import gui.NoteWindow;
+
 import java.util.ArrayList;
 
 public class NoteManager {
 	
 	private String noteFilePath;
 	private ArrayList<Note> notesList;
+	private NoteWindow noteWindow;
 	
 	public ArrayList<Note> loadNotes() {
 		BufferedReader bReader = null;
@@ -79,6 +83,7 @@ public class NoteManager {
 		catch (IOException e) {
 			e.printStackTrace();
 		}
+		noteWindow.redraw();
 
 
 	}
@@ -94,6 +99,7 @@ public class NoteManager {
 	public NoteManager() {
 		this.noteFilePath = System.getProperty("user.dir") + "/notes.csv";
 		this.setNotesList(loadNotes());
+		this.noteWindow = null;
 	}
 	
 	public ArrayList<String> getCategories(){
@@ -112,6 +118,14 @@ public class NoteManager {
 			}
 		} 	
 		return categories;
+	}
+	
+	public void setWindow(NoteWindow noteWindow) {
+		this.noteWindow = noteWindow;
+	}
+	
+	public Note getNote(int noteId) {
+		return this.notesList.get(noteId);
 	}
 	
 	
