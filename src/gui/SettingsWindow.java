@@ -1,5 +1,6 @@
 package gui;
 
+import java.awt.Color;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
@@ -53,6 +54,7 @@ public class SettingsWindow extends JFrame {
 		cons.weighty = 1;
 		cons.insets = new Insets(0, 10, 20, 10);
 		JColorChooser bgChooser = new JColorChooser();
+		bgChooser.setColor(new Color(noteWindow.settingsManager.getBgColorRGB()));
 		bgChooser.setPreviewPanel(new JPanel());
 		settingsPanel.add(bgChooser, cons);
 		
@@ -60,7 +62,7 @@ public class SettingsWindow extends JFrame {
 		cons.gridy = 7;
 		JColorChooser fontChooser = new JColorChooser();
 		fontChooser.setPreviewPanel(new JPanel());
-
+		fontChooser.setColor(new Color(noteWindow.settingsManager.getFontColorRGB()));
 		settingsPanel.add(fontChooser, cons);
 
 		cons.gridx = 0;
@@ -84,7 +86,7 @@ public class SettingsWindow extends JFrame {
 		}
 		JComboBox<Integer> fontSizeField = new JComboBox<Integer>(fonts.toArray(new Integer[0]));
 		fontSizeField.setPrototypeDisplayValue(11);
-		fontSizeField.setSelectedIndex(4);
+		fontSizeField.setSelectedIndex(fonts.indexOf(noteWindow.settingsManager.getFontSize()));
 		settingsPanel.add(fontSizeField, cons);
 		
 		cons.gridx = 2;

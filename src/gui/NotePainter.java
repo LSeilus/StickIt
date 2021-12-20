@@ -4,7 +4,6 @@ import java.awt.GridBagConstraints;
 import java.awt.Color;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
-import java.util.ArrayList;
 import javax.swing.JPanel;
 import Infrastructure.Note;
 import Infrastructure.NoteManager;
