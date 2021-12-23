@@ -27,7 +27,7 @@ public class NoteInputWindow extends JFrame {
 	private JComboBox<String> categoriesSelect;
 	
 	public NoteInputWindow(NoteManager manager, NoteWindow window) { 
-		
+		//this constructor is for adding notes
 		GridBagConstraints cons = new GridBagConstraints();
 		noteTextLabel = new JLabel("Note content");
 		categoryLabel = new JLabel("category");
@@ -55,7 +55,7 @@ public class NoteInputWindow extends JFrame {
 	}
 	
 	public NoteInputWindow(NoteManager manager, int noteId) { 
-		
+		//this constructor is for editing notes
 		GridBagConstraints cons = new GridBagConstraints();
 		noteTextLabel = new JLabel("New note text");
 		categoryLabel = new JLabel("New category");

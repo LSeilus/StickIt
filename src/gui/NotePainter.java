@@ -14,24 +14,37 @@ public class NotePainter {
 		canvas.setLayout(new GridBagLayout());
 		GridBagConstraints cons = new GridBagConstraints();
 		
-		cons.gridwidth = 8;
-		cons.weightx = 0.8;
-		cons.weighty = 1;
-		cons.anchor = GridBagConstraints.NORTHWEST;
-		cons.insets = new Insets(0, 10, 0, 10);
-		cons.gridx = 0;
+		
 		int positionY = 0;
 		int rows = 1;
-		for (int i = 0; i < manager.getNotesList().size(); i++) {
-				
-			Note currentNote = manager.getNotesList().get(i);
-			NotePanel singleNote = new NotePanel(i, currentNote, fontSize, fontColor, bgColor, manager);
-			rows = 1 + (currentNote.getNoteText().length() / 70); 
-
-			cons.gridheight = rows;
+		for (int i = manager.getNotesList().size() - 1; i >= 0; i--) {
+			cons.gridwidth = 8;
+			cons.weightx = 0.8;
+			cons.weighty = 1;
+			cons.anchor = GridBagConstraints.NORTHWEST;
 			cons.gridy = positionY;
+			cons.gridx = 0;
+			cons.insets = new Insets(5, 10, 5, 10);
+			Note currentNote = manager.getNotesList().get(i);
+			rows = 1 + (currentNote.getNoteText().length() / 70); 
+			cons.gridheight = rows;
+			
+			NotesDisplayPanel singleNote = new NotesDisplayPanel(i, currentNote, fontSize, fontColor, bgColor, manager);
+			
+			
 			positionY += rows;
 			canvas.add(singleNote, cons);
+			
+			cons.gridwidth = 1;
+			cons.weightx = 0.1;
+			cons.anchor = GridBagConstraints.NORTHEAST;
+			cons.gridx = 8;
+			NotesDisplayPanel catPanel = new NotesDisplayPanel(i, currentNote, fontSize, fontColor, bgColor, false);
+			canvas.add(catPanel, cons);
+			cons.gridx = 9;
+			NotesDisplayPanel datePanel = new NotesDisplayPanel(i, currentNote, fontSize, fontColor, bgColor, true);
+
+			canvas.add(datePanel, cons);
 		}
 	}
 }

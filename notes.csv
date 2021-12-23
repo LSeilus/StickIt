@@ -3,7 +3,7 @@ note2;,b;,2021-11-14T21:39:06.832878300
 bab;,b;,2021-11-14T21:46:56.205646
 sdadxczxcz;,ab;,2021-11-21T17:28:16.108525800
 Remember to hug Devon;,super important;,2021-11-27T20:54:35.935339600
-Devon is the bestest;,a;,2021-11-27T21:33:18.317379
+Devon is the bestestest;,Devon notes;,2021-11-27T21:33:18.317379
 I love Devon;,a;,2021-11-27T21:36:12.281513400
 I love Devon;,a;,2021-11-27T21:36:22.892510300
 Devon is cute;,a;,2021-11-27T21:37:30.290456500
@@ -26,6 +26,10 @@ Add?;,a;,2021-12-05T14:07:40.344883600
 Still works?;,new cat;,2021-12-05T14:46:39.484672
 now it's going to be shorter;,short category;,2021-12-10T20:51:30.700469900
 Noooote;,a;,2021-12-11T14:48:54.807293100
-Okej, tutaj mo¿na tylko jedn¹ linijkê wpisaæ :);,a;,2021-12-12T13:42:49.480997800
+long;,a;,2021-12-12T13:42:49.480997800
 Still works?;,a;,2021-12-12T13:58:02.261159300
 Noteeeeeee;,cat;,2021-12-20T20:45:38.975376100
+Newest note goes up!;,test notes;,2021-12-23T16:33:02.437316400
+Now we're doing something wild - both the note and the category will be longer, in the interest of testing their behavior under these circumstances;,This is a very long category so I can test how notes behave with those;,2021-12-23T16:41:58.062844200
+Do I perhaps have a bug in which the last letter of the longer notes gets cut off? I thought I fixed that one already;,test notes;,2021-12-23T16:42:41.121629300
+Well, that was an easy fix;,short category;,2021-12-23T16:43:25.159181700

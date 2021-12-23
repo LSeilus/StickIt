@@ -3,6 +3,8 @@ import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.Font;
+
+import javax.swing.BoxLayout;
 import javax.swing.JLabel;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
@@ -25,6 +27,7 @@ public class NotePanel extends JPanel{
 	public NotePanel(int noteId, Note note, int fontSize, Color fontColor, Color bgColor, NoteManager manager) {
 		this.manager = manager;
 		this.noteId = noteId;
+		this.setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
 		String noteContent = note.getNoteText();
 		int rows = 1 + (noteContent.length() / 70);
 		String singleLine = "";
@@ -43,7 +46,7 @@ public class NotePanel extends JPanel{
 
 				for (int j = Math.min(70*(i+1), noteContent.length()-1); j > 70 * i; j--) {
 					if (i == rows - 1) {
-						singleLine = noteContent.substring(cutPoint, noteContent.length()-1);
+						singleLine = noteContent.substring(cutPoint, noteContent.length());
 						break;
 					}
 					if (noteContent.charAt(j) == ' ') {
