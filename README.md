@@ -10,8 +10,10 @@ The notes are displayed in orded by date created from the top. Editing notes doe
 The two packages are divided by primary function, wtih the 'gui' package housing classes that deal with frames and panels,
 while the 'infrastructure' package deals primarily with writing/reading data.
 
-####Classes:
+#### Classes:
+
 **gui:**
+
 Main - the class only calls initial constructors, and otherwise has no function
 NoteWindow - creates a window onto which notes will be written. A monocolored undecorated panel, making use of the ComponentMover and ComponentResizer classes
 for moving and resizing functionality, and calls NotePainter to populate the panel.
