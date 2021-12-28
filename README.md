@@ -11,6 +11,7 @@ The two packages are divided by primary function, wtih the 'gui' package housing
 while the 'infrastructure' package deals primarily with writing/reading data.
 
 #### Classes:
+
 **gui:**
 
 Main - the class only calls initial constructors, and otherwise has no function
