@@ -60,8 +60,8 @@ public class NoteInputWindow extends JFrame {
 		noteTextLabel = new JLabel("New note text");
 		categoryLabel = new JLabel("New category");
 		init(cons, manager);
-		
-		cons.insets = new Insets(20, 20, 30, 20);
+		noteText.setText(manager.getNote(noteId).getNoteText());
+		categoriesSelect.setSelectedIndex(manager.getCategories().indexOf(manager.getNote(noteId).getNoteCategory()));		cons.insets = new Insets(20, 20, 30, 20);
 		cons.gridx = 1;
 		cons.gridy = 5;
 		cons.weightx = 0.4;
